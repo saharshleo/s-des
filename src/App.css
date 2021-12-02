@@ -1,38 +1,191 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400;500&display=swap');
+
+
+:root {
+    --primary-dark: #263238;
+    --secondary-dark: #455a64;
+    --primary-light: #cfd8dc;
+    --secondary-light: #546e7a;
+    --anchor-default: #1e88e5;
+    --anchor-hover: #0d47a1;
+    --anchor-visited: #880e4f;
+    --black: #000;
+    --white: #fff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;400;500&display=swap');
+
+
+:root {
+    --primary-dark: #263238;
+    --secondary-dark: #455a64;
+    --primary-light: #cfd8dc;
+    --secondary-light: #546e7a;
+    --anchor-default: #1e88e5;
+    --anchor-hover: #0d47a1;
+    --anchor-visited: #880e4f;
+    --black: #000;
+    --white: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.spacing {
+    padding: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* TEXT ############################################################################################### */
+.text {
+    margin: 0px;
+    opacity: 1;
+    /* transition: 0.1s all ease-in-out; */
 }
+
+.text__title {
+    font-weight: 800;
+    font-size: 3rem;
+    letter-spacing: 0.25rem;
+    font-family: Roboto Slab, sans-serif;
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+    .text__title {
+        font-size: 2rem;
+    }
+}
+
+.text__header {
+    font-family: Roboto Slab, sans-serif;
+    margin-top: 0.8em;
+    color: var(--primary-dark);
+}
+
+.text__header1 {
+    font-weight: 600;
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+    .text__header1 {
+        font-size: 1.5rem;
+    }
+}
+
+.text__header2 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+    .text__header2 {
+        font-size: 1rem;
+    }
+}
+
+.text__header3 {
+    font-weight: 600;
+    font-size: 1.25rem;
+    letter-spacing: 0.1rem;
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+    .text__header3 {
+        font-size: 0.9rem;
+    }
+}
+
+.text__body {
+    margin-top: 12px;
+    font-weight: 400;
+    font-size: 0.9rem;
+    font-family: Roboto Slab, sans-serif;
+    color: var(--black);
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+    .text__body {
+        font-size: 0.7rem;
+    }
+}
+
+.text__light {
+    font-weight: 200;
+    font-size: 1rem;
+    font-family: Roboto Slab, sans-serif;
+    color: var(--secondary-light);
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+    .text__light {
+        font-size: 0.7rem;
+    }
+}
+
+.text__ultra_light {
+    font-weight: 100;
+    font-size: 1rem;
+    font-family: Roboto Slab, sans-serif;
+    color: var(--secondary-light);
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+    .text__ultra_light {
+        font-size: 0.7rem;
+    }
+}
+
+.card__header {
+    word-break: break-all;
+}
+
+.card_description {
+    font-size: 0.85rem;
+}
+
+.repo_card_truncate_overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+::selection {
+    color: var(--white);
+    background-color: var(--secondary-dark);
+}
+
+
+/* IMAGE ###############################################################################################
+.image__profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */

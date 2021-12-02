@@ -1,0 +1,25 @@
+.arrow {
+    pointer-events: none;
+}
+
+.arrow__path {
+    stroke: #880e4f;
+    fill: transparent;
+    /* stroke-dasharray: 4; */
+
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 4s infinite forwards;
+    stroke-width: 0.2rem;
+}
+
+.arrow__head line {
+    stroke: #ff0088;
+    stroke-width: 0px;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
