@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Arrow, { DIRECTION } from 'react-arrows';
 
-import {colors, useStyles} from '../../config';
+import {useStyles} from '../../config';
 
 
 const KeyGeneration = (props) => {
@@ -122,7 +122,7 @@ const KeyGeneration = (props) => {
                 <Grid container justifyContent="center" spacing={2}>
                     {[6, 3, 7, 4, 8, 5, 10, 9].map((value, index) => (
                         <Grid key={value} item>
-                        <div className={`${classes.perm_bits} ${classes[getPermName(index)]} ${classes.margin_top}`} id={`p82_${index+1}`}>{value}</div>
+                        <div className={`${classes.perm_bits} ${classes[getPermName(value-1)]} ${classes.margin_top}`} id={`p82_${value}`}>{value}</div>
                         </Grid>
                     ))}
                 </Grid>
@@ -204,7 +204,7 @@ const KeyGeneration = (props) => {
             from={{
                 direction: DIRECTION.LEFT,
                 node: () => document.getElementById(`p10o_${1}`),
-                translation: [-5, -0],
+                translation: [-5, 0],
             }}
             to={{
                 direction: DIRECTION.LEFT,
