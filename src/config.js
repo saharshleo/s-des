@@ -1,0 +1,200 @@
+import { makeStyles } from "@material-ui/core/styles";
+
+const colors = [
+    "#c62828d5",
+    "#ad1457d5",
+    "#6a1b9ad5",
+    "#1565c0d5",
+    "#c6ff00d5",
+    "#ef6c00d5",
+    "#4527a0d5",
+    "#455a64d5",
+    "#2e7d32d5",
+    "#6200ead5",
+];
+
+
+const useStyles = makeStyles((theme) => ({
+    centered: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    
+    bits: {
+        backgroundColor: "#455a64d5",
+        height: '50px',
+        width: '50px',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+
+    // KEY BITS -----------------------------------------------------
+    key_bits0: {
+        backgroundColor: colors[0],
+    },
+    key_bits1: {
+        backgroundColor: colors[1],
+    },
+    key_bits2: {
+        backgroundColor: colors[2],
+    },
+    key_bits3: {
+        backgroundColor: colors[3],
+    },
+    key_bits4: {
+        backgroundColor: colors[4],
+    },
+    key_bits5: {
+        backgroundColor: colors[5],
+    },
+    key_bits6: {
+        backgroundColor: colors[6],
+    },
+    key_bits7: {
+        backgroundColor: colors[7],
+    },
+    key_bits8: {
+        backgroundColor: colors[8],
+    },
+    key_bits9: {
+        backgroundColor: colors[9],
+    },    
+
+    // PERMUTATION BITS -----------------------------------------------------
+    perm_bits: {
+        height: '25px',
+        width: '25px',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "12px",
+        marginTop: "60px",
+        marginBottom: "0px",
+    },
+
+    permutation_bits0: {
+        backgroundColor: colors[0], 
+    },
+    permutation_bits1: {
+        backgroundColor: colors[1], 
+    },
+    permutation_bits2: {
+        backgroundColor: colors[2], 
+    },
+    permutation_bits3: {
+        backgroundColor: colors[3], 
+    },
+    permutation_bits4: {
+        backgroundColor: colors[4], 
+    },
+    permutation_bits5: {
+        backgroundColor: colors[5], 
+    },
+    permutation_bits6: {
+        backgroundColor: colors[6], 
+    },
+    permutation_bits7: {
+        backgroundColor: colors[7], 
+    },
+    permutation_bits8: {
+        backgroundColor: colors[8], 
+    },
+    permutation_bits9: {
+        backgroundColor: colors[9], 
+    },
+
+
+    margin_top: {
+        marginTop: "40px",
+    },
+
+    label: {
+        display: "flex",
+        flexGrow: '1',
+        justifyContent: "flex-end",        
+    },
+
+
+    // ARROWS ----------------------------------------------------------
+    arrow_path: {
+        // stroke: colors[0],
+        fill: "transparent",
+        strokeDasharray: "1000",
+        strokeDashoffset: "1000",
+        // animation: `$dash 4s 1 forwards`,
+        strokeWidth: "0.2rem",
+        // animationDelay: "1s",
+    },
+
+    arrow_path1: {
+        stroke: colors[0],
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "1s",
+    },
+
+    arrow_path2: {
+        stroke: colors[1],
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "2s",
+    },
+
+    arrow_path3: {
+        stroke: colors[2],
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "3s",
+    },
+
+    arrow_path4: {
+        stroke: colors[3],
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "4s",
+    },
+
+    arrow_path5: {
+        stroke: colors[4],
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "5s",
+    },
+
+    arrow_path6: {
+        stroke: colors[5],
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "6s",
+    },
+
+    arrow_path7: {
+        stroke: colors[6],
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "7s",
+    },
+
+    arrow_path8: {
+        stroke: colors[7],
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "8s",
+    },
+
+    arrow_path9: {
+        stroke: colors[8],
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "9s",
+    },
+
+    arrow_path10: {
+        stroke: colors[9],
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "10s",
+    },
+
+    "@keyframes dash": {
+        "to": {
+            strokeDashoffset: "0",
+        }
+    }
+}));
+
+
+
+export { colors, useStyles };
