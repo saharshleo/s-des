@@ -9,13 +9,21 @@ import {useStyles} from '../../config';
 
 const KeyGeneration = (props) => {
     const classes = useStyles();
-    // let data = props.data;
-    console.log(props.akshat);
 
-    // useEffect( () => {
-    //     props.setAkshat(!props.akshat);
-    //     console.log(props.akshat);
-    // }, [props.data]);
+    // Animate arrows after form submit
+    useEffect(() => {
+        
+        let arrows = document.querySelectorAll(".arrow");
+        if(arrows && arrows.length) {
+            arrows.forEach(arrow => {
+                arrow.style.animation = "none";
+                setTimeout(() => {
+                    arrow.style.animation = "";
+                });
+            })
+        }
+
+    }, [props.data]);
 
     function getArrowName(v) {
         return "arrow_path"+v;
@@ -31,7 +39,6 @@ const KeyGeneration = (props) => {
 
     return (
         <>
-
         <Grid container spacing={2}>
             
             {/* key bits */}
@@ -148,7 +155,7 @@ const KeyGeneration = (props) => {
         {/* MAKE Key --> Permutation10 ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(value)]} ${classes.arrow_path} ${props.akshat}`}
+                className={`arrow ${classes[getArrowName(value)]} ${classes.arrow_path}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`key_bit_${value}`),

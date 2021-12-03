@@ -15,15 +15,13 @@ function App() {
     const classes = useStyles();
     const [keyBitsArray, setKeyBitsArray] = useState([1, 0, 1, 0, 0, 0, 0, 0, 1, 0]);
     const [perm, setPerm] = useState([3, 5, 2, 7, 4, 10, 1, 9, 8, 6]);
-    const [akshat, setAkshat] = useState(true);
     
     const handleSubmit = () => {        
         // input validation [TODO]
 
         setKeyBitsArray(keyValue.split("").map((value) => (Number(value))));
-        setPerm(perm);
-        setAkshat(!akshat);
-        console.log(keyBitsArray);
+        // setPerm([6, 8, 9, 1, 10, 4, 7, 2, 5, 3]);
+        // console.log(keyBitsArray);
 
     };
     const [keyValue, setKeyValue] = useState("");
@@ -41,7 +39,7 @@ function App() {
                 <TextField id="outlined-basic" label="10-bit Key" variant="outlined" value={keyValue} onChange={onTextChange} />
                 <Button className={classes.button} variant="contained" size="Large" color="primary" onClick={handleSubmit}>Submit</Button>
             </Grid>
-            <KeyGeneration data={keyBitsArray} perm={perm} setAkshat={setAkshat} akshat={akshat}/>
+            <KeyGeneration data={keyBitsArray} perm={perm} />
         </div>
         
         </Container>
