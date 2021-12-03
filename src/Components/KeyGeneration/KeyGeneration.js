@@ -1,7 +1,6 @@
 import './KeyGeneration.css'
 
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
+import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Arrow, { DIRECTION } from 'react-arrows';
 
@@ -10,6 +9,13 @@ import {useStyles} from '../../config';
 
 const KeyGeneration = (props) => {
     const classes = useStyles();
+    // let data = props.data;
+    console.log(props.akshat);
+
+    // useEffect( () => {
+    //     props.setAkshat(!props.akshat);
+    //     console.log(props.akshat);
+    // }, [props.data]);
 
     function getArrowName(v) {
         return "arrow_path"+v;
@@ -28,17 +34,13 @@ const KeyGeneration = (props) => {
 
         <Grid container spacing={2}>
             
-            <Grid item xs={12} className={classes.centered}>
-                <TextField id="outlined-basic" label="Key" variant="outlined" defaultValue="10101010" />
-            </Grid>
-            
             {/* key bits */}
             <Grid item xs={2} className={`${classes.label} text__header3`}>Key Bits</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 0, 1, 0, 0, 0, 0, 0, 1, 0].map((value, index) => (
-                        <Grid key={value} item>
-                        <div className={`${classes.bits} ${classes[getKeyName(index)]}`} id={`key_bit_${index+1}`}>{value}</div>
+                    {props.data.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
+                        <div className={`${classes.bits} ${classes[getKeyName(index)]}`} id={`key_bit_${Number(index)+1}`}>{value}</div>
                         </Grid>
                     ))}
                 </Grid>
@@ -48,7 +50,7 @@ const KeyGeneration = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>P10 Positions</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[3, 5, 2, 7, 4, 10, 1, 9, 8, 6].map((value, index) => (
+                    {props.perm.map((value, index) => (
                         <Grid key={value} item>
                         <div className={`${classes.perm_bits} ${classes[getPermName(value-1)]}`} id={`p10_${value}`}>{value}</div>
                         </Grid>
@@ -146,7 +148,7 @@ const KeyGeneration = (props) => {
         {/* MAKE Key --> Permutation10 ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(value)]} ${classes.arrow_path}`}
+                className={`arrow ${classes[getArrowName(value)]} ${classes.arrow_path} ${props.akshat}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`key_bit_${value}`),

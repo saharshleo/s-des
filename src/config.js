@@ -15,6 +15,15 @@ const colors = [
 
 
 const useStyles = makeStyles((theme) => ({
+    akshat: {
+
+    },
+    
+    button: {
+        margin: "1rem",
+        padding: "0.5rem",
+    },
+
     centered: {
         display: "flex",
         justifyContent: "center",
