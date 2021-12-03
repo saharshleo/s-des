@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Arrow, { DIRECTION } from 'react-arrows';
 
@@ -40,16 +39,12 @@ const Decryption = (props) => {
 
         <Grid container spacing={2}>
             
-            <Grid item xs={12} className={classes.centered}>
-                <TextField id="outlined-basic" label="Cipher Text" variant="outlined" defaultValue="10010111" />
-            </Grid>
-
             {/* plaintext bits */}
             <Grid item xs={2} className={`${classes.label} text__header3`}>Ciphertext Bits</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 0, 0, 1, 0, 1, 1, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.cipherTextArray.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`ct_bit_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -60,8 +55,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>IP</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[2, 6, 3 , 1, 4, 8, 5, 7].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.initialPerm.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.perm_bits} ${classes[getPermName(value-1)]}`} id={`ip_dec_${value}`}>{value}</div>
                         </Grid>
                     ))}
@@ -72,8 +67,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>After IP</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[0, 1, 0, 1, 1, 1, 0, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decinitialPermOutput.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`after_ip_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -88,8 +83,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>Right Half</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 1, 0, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decr4Iter1.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index+4)]}`} id={`rh_dec_${index+1+4}`}>{value}</div>
                         </Grid>
                     ))}
@@ -101,8 +96,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>E/P</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[4, 1, 2, 3, 2, 3, 4, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.expansion.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.perm_bits} ${classes[getPermName(value-1)]} ep_dec_${value}`} >{value}</div>
                         </Grid>
                     ))}
@@ -114,8 +109,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>Bits after E/P</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 1, 1, 0, 1, 0, 1, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decexpansionIter1Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`after_ep_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -127,8 +122,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>Key K2</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 0, 1, 0, 0, 1, 0, 0].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.key2.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`k2_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -140,8 +135,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>XOR</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[0, 1, 0, 0, 1, 1, 1, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decexpXORKey1Iter1Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`after_ep_xor_k2_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -154,7 +149,7 @@ const Decryption = (props) => {
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
                     {['S0', 'S1'].map((value, index) => (
-                        <Grid key={value} item>
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`s_box_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -166,8 +161,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>S-Box Output</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 1, 1, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decsboxIter1Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getPermName(index)]}`} id={`s_box_output_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -178,8 +173,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>Permutation</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[2, 4, 3, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.perm4.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.perm_bits} ${classes[getPermName(value-1)]}`} id={`perm_dec_${value}`}>{value}</div>
                         </Grid>
                     ))}
@@ -190,13 +185,13 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>After Permutation</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 0, 0, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decl4Iter1.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`lh_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
-                    {[1, 1, 1, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decperm4Iter1Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`after_perm_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -208,8 +203,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>XOR with left half</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 0, 1, 0].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decleftXORPerm4Iter1Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`after_perm_xor_lh_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -221,8 +216,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>Output of Fk</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 0, 1, 0, 1, 1, 0, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decfk1Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`fk_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -234,8 +229,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>Swap</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 1, 0, 1, 1, 0, 1, 0].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decswapOutput.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`swap_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -250,8 +245,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>Right Half</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 0, 1, 0].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decr4Iter2.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index+4)]}`} id={`rh_2_dec_${index+1+4}`}>{value}</div>
                         </Grid>
                     ))}
@@ -263,8 +258,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>E/P</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[4, 1, 2, 3, 2, 3, 4, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.expansion.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.perm_bits} ${classes[getPermName(value-1)]} ep_2_dec_${value}`} >{value}</div>
                         </Grid>
                     ))}
@@ -276,8 +271,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>Bits after E/P</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[0, 1, 0, 1, 0, 1, 0, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decexpansionIter2Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`after_ep_2_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -289,8 +284,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>Key K1</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[0, 1, 0, 0, 0, 0, 1, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.key1.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`k1_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -302,8 +297,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>XOR</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[0, 0, 0, 1, 0, 1, 1, 0].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decexpXORKey2Iter2Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`after_ep_xor_k1_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -316,7 +311,7 @@ const Decryption = (props) => {
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
                     {['S0', 'S1'].map((value, index) => (
-                        <Grid key={value} item>
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`s_box_2_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -328,8 +323,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>S-Box Output</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 1, 1, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decsboxIter2Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getPermName(index)]}`} id={`s_box_output_2_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -340,8 +335,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>Permutation</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[2, 4, 3, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.perm4.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.perm_bits} ${classes[getPermName(value-1)]}`} id={`perm_2_dec_${value}`}>{value}</div>
                         </Grid>
                     ))}
@@ -352,13 +347,13 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>After Permutation</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 1, 0, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decl4Iter2.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`lh_2_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
-                    {[1, 1, 1, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decperm4Iter2Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`after_perm_2_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -370,8 +365,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>XOR with left half</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[0, 0, 1, 0].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decleftXORPerm4Iter2Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`after_perm_xor_lh_2_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -383,8 +378,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>Output of Fk</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[0, 0, 1, 0, 1, 0, 1, 0].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.decfk2Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`fk_2_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -396,8 +391,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>IP inverse</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[4, 1, 3, 5, 7, 2, 8, 6].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.inverseIP.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.perm_bits} ${classes[getPermName(value-1)]}`} id={`ip_inv_dec_${value}`}>{value}</div>
                         </Grid>
                     ))}
@@ -408,8 +403,8 @@ const Decryption = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>After IP inverse</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[0, 0, 1, 1, 1, 0, 0, 0].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.plainText.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getCipherTextName(index)]}`} id={`after_ip_inv_dec_${index+1}`}>{value}</div>
                         </Grid>
                     ))}

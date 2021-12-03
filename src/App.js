@@ -16,7 +16,7 @@ import {useStyles} from './configKey';
 import {useStylesEnc} from './configEnc';
 import {useStylesDec} from './configDec';
 
-import {getKeyGenOutputs, getEncryptOutputs} from './utils';
+import {getKeyGenOutputs, getEncryptOutputs, getDecryptOutputs} from './utils';
 
 function App() {
     const classesKey = useStyles();
@@ -72,7 +72,7 @@ function App() {
     const onKeyChange = (e) => setKeyValue(e.target.value);
 
 
-    // KeyGeneration
+    // Encryption
     const [plainTextValue, setPlainTextValue] = useState("");
     const [plainTextArray, setPlainTextArray] = useState([1, 0, 0, 1, 0, 1, 1, 1]);
     const [expansion, setExpansion] = useState([4, 1, 2, 3, 2, 3, 4, 1]);
@@ -146,6 +146,75 @@ function App() {
         
     };
     const onPlainTextChange = (e) => setPlainTextValue(e.target.value);
+
+    // Decryption
+    const [cipherTextValue, setCipherTextValue] = useState("");
+    const [cipherTextArray, setCipherTextArray] = useState([0, 0, 1, 1, 1, 0, 0, 0]);
+
+    const [decinitialPermOutput, setDecInitialPermOutput] = useState([0, 0, 1, 0, 1, 0, 1, 0]);
+    const [decl4Iter1, setDecL4Iter1] = useState([0, 0, 1, 0]);
+    const [decr4Iter1, setDecR4Iter1] = useState([1, 0, 1, 0]);
+    const [decexpansionIter1Output, setDecExpansionIter1Output] = useState([0, 1, 0, 1, 0, 1, 0, 1]);
+    const [decexpXORKey1Iter1Output, setDecExpXORKey1Iter1Output] = useState([0, 0, 0, 1, 0, 1, 1, 0]);
+    const [decsboxIter1Output, setDecSboxIter1Output] = useState([1, 1, 1, 1]);
+    const [decperm4Iter1Output, setDecPerm4Iter1Output] = useState([1, 1, 1, 1]);
+    const [decleftXORPerm4Iter1Output, setDecLeftXORPerm4Iter1Output] = useState([1, 1, 0, 1]);
+    const [decfk1Output, setDecFk1Output] = useState([1, 1, 0, 1, 1, 0, 1, 0]);
+    const [decswapOutput, setDecSwapOutput] = useState([1, 0, 1, 0, 1, 1, 0, 1]);
+    const [decl4Iter2, setDecL4Iter2] = useState([1, 0, 1, 0]);
+    const [decr4Iter2, setDecR4Iter2] = useState([1, 1, 0, 1]);
+    const [decexpansionIter2Output, setDecExpansionIter2Output] = useState([1, 1, 1, 0, 1, 0, 1, 1]);
+    const [decexpXORKey2Iter2Output, setDecExpXORKey2Iter2Output] = useState([0, 1, 0, 0, 1, 1, 1, 1]);
+    const [decsboxIter2Output, setDecSboxIter2Output] = useState([1, 1, 1, 1]);
+    const [decperm4Iter2Output, setDecPerm4Iter2Output] = useState([1, 1, 1, 1]);
+    const [decleftXORPerm4Iter2Output, setDecLeftXORPerm4Iter2Output] = useState([0, 1, 0, 1]);
+    const [decfk2Output, setDecFk2Output] = useState([0, 1, 0, 1, 1, 1, 0, 1]);
+
+    const [plainText, setPlainText] = useState([1, 0, 0, 1, 0, 1, 1, 1]);
+
+    const handleDecryptSubmit = () => {        
+        // input validation [TODO]
+        if(cipherTextValue.length !== 8) {
+            alert("Ciphertext length should be 8");
+            return;
+        }
+        let tempArray = cipherTextValue.split("").map((value) => (Number(value)));
+
+        for (let i = 0; i < 8; i++) {
+            if (!(tempArray[i] === 0 || tempArray[i] === 1)) {
+                alert("Ciphertext bits should be 1 or 0");
+                return;
+            }
+        }
+
+        setCipherTextArray(tempArray);
+
+        // calculate output of p10, ls1, p8 or key1, ls2, p8 or key2
+        let decryptOutputs = getDecryptOutputs(tempArray, initialPerm, s0, s1, expansion, perm4, inverseIP, key1, key2);
+        
+        setDecInitialPermOutput(decryptOutputs["initialPermOutput"]);
+        setDecL4Iter1(decryptOutputs["l4Iter1"]);
+        setDecR4Iter1(decryptOutputs["r4Iter1"]);
+        setDecExpansionIter1Output(decryptOutputs["expansionIter1Output"]);
+        setDecExpXORKey1Iter1Output(decryptOutputs["expXORKey1Iter1Output"]);
+        setDecSboxIter1Output(decryptOutputs["sboxIter1Output"]);
+        setDecPerm4Iter1Output(decryptOutputs["perm4Iter1Output"]);
+        setDecLeftXORPerm4Iter1Output(decryptOutputs["leftXORPerm4Iter1Output"]);
+        setDecFk1Output(decryptOutputs["fk1Output"]);
+        setDecSwapOutput(decryptOutputs["swapOutput"]);
+        setDecL4Iter2(decryptOutputs["l4Iter2"]);
+        setDecR4Iter2(decryptOutputs["r4Iter2"]);
+        setDecExpansionIter2Output(decryptOutputs["expansionIter2Output"]);
+        setDecExpXORKey2Iter2Output(decryptOutputs["expXORKey2Iter2Output"]);
+        setDecSboxIter2Output(decryptOutputs["sboxIter2Output"]);
+        setDecPerm4Iter2Output(decryptOutputs["perm4Iter2Output"]);
+        setDecLeftXORPerm4Iter2Output(decryptOutputs["leftXORPerm4Iter2Output"]);
+        setDecFk2Output(decryptOutputs["fk2Output"]);
+        setPlainText(decryptOutputs["plainText"]);
+
+        
+    };
+    const onCipherTextChange = (e) => setCipherTextValue(e.target.value);
     
     return (
         <>
@@ -193,6 +262,37 @@ function App() {
                 fk2Output={fk2Output}
 
                 cipherText={cipherText} />
+            
+            <h1>Ciphertext: </h1>
+            <TextField id="outlined-basic" variant="outlined" value={cipherText.join("")} inputProps={{readOnly: true, }} />
+
+            {/* ####### DECRYPTION ############################################## */}
+            <h1 className="text__header">Decryption</h1>
+            <Grid item xs={12} className={classesDec.centered}>
+                <TextField id="outlined-basic" label="8-bit Ciphertext" variant="outlined" value={cipherTextValue} onChange={onCipherTextChange} />
+                <Button className={classesDec.button} variant="contained" size="Large" color="primary" onClick={handleDecryptSubmit}>Submit</Button>
+            </Grid>
+            <Decryption 
+                cipherTextArray={cipherTextArray} key1={key1} key2={key2}
+                initialPerm={initialPerm} inverseIP={inverseIP} expansion={expansion} 
+                perm4={perm4} s0={s0} s1={s1}
+                
+                decinitialPermOutput={decinitialPermOutput} 
+                
+                decl4Iter1={decl4Iter1} decr4Iter1={decr4Iter1} decexpansionIter1Output={decexpansionIter1Output} decexpXORKey1Iter1Output={decexpXORKey1Iter1Output} 
+                decsboxIter1Output={decsboxIter1Output} decperm4Iter1Output={decperm4Iter1Output} decleftXORPerm4Iter1Output={decleftXORPerm4Iter1Output} 
+                decfk1Output={decfk1Output}
+                
+                decswapOutput={decswapOutput}
+                
+                decl4Iter2={decl4Iter2} decr4Iter2={decr4Iter2} decexpansionIter2Output={decexpansionIter2Output} decexpXORKey2Iter2Output={decexpXORKey2Iter2Output} 
+                decsboxIter2Output={decsboxIter2Output} decperm4Iter2Output={decperm4Iter2Output} decleftXORPerm4Iter2Output={decleftXORPerm4Iter2Output} 
+                decfk2Output={decfk2Output}
+
+                plainText={plainText} />
+
+            <h1>Plaintext: </h1>
+            <TextField id="outlined-basic" variant="outlined" value={plainText.join("")} inputProps={{readOnly: true, }} />
 
 
         </Container>

@@ -124,28 +124,28 @@ const getEncryptOutputs = (msg, initialPerm, s0, s1, expansion, perm4, inverseIP
 
     let cipherText = applyPermutation(temp, inverseIP);
 
-    let ee = {
-        "initialPermOutput": initialPermOutput,
-        "l4Iter1": l4Iter1,
-        "r4Iter1": r4Iter1,
-        "expansionIter1Output": expansionIter1Output,
-        "expXORKey1Iter1Output": expXORKey1Iter1Output,
-        "sboxIter1Output": sboxIter1Output,
-        "perm4Iter1Output": perm4Iter1Output,
-        "leftXORPerm4Iter1Output": leftXORPerm4Iter1Output,
-        "fk1Output": fk1Output,
-        "swapOutput": swapOutput,
-        "l4Iter2": l4Iter2,
-        "r4Iter2": r4Iter2,
-        "expansionIter2Output": expansionIter2Output,
-        "expXORKey2Iter2Output": expXORKey2Iter2Output,
-        "sboxIter2Output": sboxIter2Output,
-        "perm4Iter2Output": perm4Iter2Output,
-        "leftXORPerm4Iter2Output": leftXORPerm4Iter2Output,
-        "fk2Output": fk2Output,
-        "cipherText": cipherText,
-    };
-    console.log(ee);
+    // let ee = {
+    //     "initialPermOutput": initialPermOutput,
+    //     "l4Iter1": l4Iter1,
+    //     "r4Iter1": r4Iter1,
+    //     "expansionIter1Output": expansionIter1Output,
+    //     "expXORKey1Iter1Output": expXORKey1Iter1Output,
+    //     "sboxIter1Output": sboxIter1Output,
+    //     "perm4Iter1Output": perm4Iter1Output,
+    //     "leftXORPerm4Iter1Output": leftXORPerm4Iter1Output,
+    //     "fk1Output": fk1Output,
+    //     "swapOutput": swapOutput,
+    //     "l4Iter2": l4Iter2,
+    //     "r4Iter2": r4Iter2,
+    //     "expansionIter2Output": expansionIter2Output,
+    //     "expXORKey2Iter2Output": expXORKey2Iter2Output,
+    //     "sboxIter2Output": sboxIter2Output,
+    //     "perm4Iter2Output": perm4Iter2Output,
+    //     "leftXORPerm4Iter2Output": leftXORPerm4Iter2Output,
+    //     "fk2Output": fk2Output,
+    //     "cipherText": cipherText,
+    // };
+    // console.log(ee);
 
     return {
         "initialPermOutput": initialPermOutput,
@@ -170,4 +170,81 @@ const getEncryptOutputs = (msg, initialPerm, s0, s1, expansion, perm4, inverseIP
     };
 };
 
-export {getKeyGenOutputs, getEncryptOutputs}
+
+const getDecryptOutputs = (msg, initialPerm, s0, s1, expansion, perm4, inverseIP, key1, key2) => {
+    let temp = applyPermutation(msg, initialPerm);
+    let initialPermOutput = temp;
+    console.log(initialPermOutput);
+    let l4Iter1 = initialPermOutput.slice(0, 4), r4Iter1 = initialPermOutput.slice(4, 8);
+
+    temp = fk(expansion, s0, s1, key2, temp, perm4);
+    let expansionIter1Output = temp["expansionOutput"];
+    let expXORKey1Iter1Output = temp["expXORKeyOutput"];
+    let sboxIter1Output = temp["sboxOutput"];
+    let perm4Iter1Output = temp["perm4Output"];
+    let leftXORPerm4Iter1Output = temp["leftXORPerm4Output"];
+    let fk1Output = temp["fkOutput"];
+    temp = temp["fkOutput"];
+
+    temp = temp.slice(4, 8).concat(temp.slice(0, 4));
+    let swapOutput = temp;
+    let l4Iter2 = swapOutput.slice(0, 4), r4Iter2 = swapOutput.slice(4, 8);
+
+    temp = fk(expansion, s0, s1, key1, temp, perm4);
+    let expansionIter2Output = temp["expansionOutput"];
+    let expXORKey2Iter2Output = temp["expXORKeyOutput"];
+    let sboxIter2Output = temp["sboxOutput"];
+    let perm4Iter2Output = temp["perm4Output"];
+    let leftXORPerm4Iter2Output = temp["leftXORPerm4Output"];
+    let fk2Output = temp["fkOutput"];
+    temp = temp["fkOutput"];
+
+    let plainText = applyPermutation(temp, inverseIP);
+
+    let ee = {
+        "initialPermOutput": initialPermOutput,
+        "l4Iter1": l4Iter1,
+        "r4Iter1": r4Iter1,
+        "expansionIter1Output": expansionIter1Output,
+        "expXORKey1Iter1Output": expXORKey1Iter1Output,
+        "sboxIter1Output": sboxIter1Output,
+        "perm4Iter1Output": perm4Iter1Output,
+        "leftXORPerm4Iter1Output": leftXORPerm4Iter1Output,
+        "fk1Output": fk1Output,
+        "swapOutput": swapOutput,
+        "l4Iter2": l4Iter2,
+        "r4Iter2": r4Iter2,
+        "expansionIter2Output": expansionIter2Output,
+        "expXORKey2Iter2Output": expXORKey2Iter2Output,
+        "sboxIter2Output": sboxIter2Output,
+        "perm4Iter2Output": perm4Iter2Output,
+        "leftXORPerm4Iter2Output": leftXORPerm4Iter2Output,
+        "fk2Output": fk2Output,
+        "plainText": plainText,
+    };
+    console.log(ee);
+
+    return {
+        "initialPermOutput": initialPermOutput,
+        "l4Iter1": l4Iter1,
+        "r4Iter1": r4Iter1,
+        "expansionIter1Output": expansionIter1Output,
+        "expXORKey1Iter1Output": expXORKey1Iter1Output,
+        "sboxIter1Output": sboxIter1Output,
+        "perm4Iter1Output": perm4Iter1Output,
+        "leftXORPerm4Iter1Output": leftXORPerm4Iter1Output,
+        "fk1Output": fk1Output,
+        "swapOutput": swapOutput,
+        "l4Iter2": l4Iter2,
+        "r4Iter2": r4Iter2,
+        "expansionIter2Output": expansionIter2Output,
+        "expXORKey2Iter2Output": expXORKey2Iter2Output,
+        "sboxIter2Output": sboxIter2Output,
+        "perm4Iter2Output": perm4Iter2Output,
+        "leftXORPerm4Iter2Output": leftXORPerm4Iter2Output,
+        "fk2Output": fk2Output,
+        "plainText": plainText,
+    };
+};
+
+export {getKeyGenOutputs, getEncryptOutputs, getDecryptOutputs}
