@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Arrow, { DIRECTION } from 'react-arrows';
 
-import {useStyles} from '../../config';
+import {useStyles} from '../../configKey';
 
 
 const KeyGeneration = (props) => {
@@ -83,7 +83,7 @@ const KeyGeneration = (props) => {
                 <Grid container justifyContent="center" spacing={2}>
                     {[0, 0, 0, 0, 1, 1, 1, 0, 0, 0].map((value, index) => (
                         <Grid key={value} item>
-                        <div className={`${classes.bits} ${classes.margin_top}`} id={`ls1_${index+1}`}>{value}</div>
+                        <div className={`${classes.bits} ${classes[getKeyName(index)]} ${classes.margin_top}`} id={`ls1_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
                 </Grid>
@@ -107,7 +107,7 @@ const KeyGeneration = (props) => {
                 <Grid container justifyContent="center" spacing={2}>
                     {[1, 0, 1, 0, 0, 1, 0, 0].map((value, index) => (
                         <Grid key={value} item>
-                        <div className={`${classes.bits}`} id={`p8o_${index+1}`}>{value}</div>
+                        <div className={`${classes.bits} ${classes[getKeyName(index)]}`} id={`p8o_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
                 </Grid>
@@ -119,7 +119,7 @@ const KeyGeneration = (props) => {
                 <Grid container justifyContent="center" spacing={2}>
                     {[0, 0, 1, 0, 0, 0, 0, 0, 1, 1].map((value, index) => (
                         <Grid key={value} item>
-                        <div className={`${classes.bits} ${classes.margin_top}`} id={`ls2_${index+1}`}>{value}</div>
+                        <div className={`${classes.bits} ${classes[getKeyName(index)]} ${classes.margin_top}`} id={`ls2_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
                 </Grid>
@@ -141,9 +141,9 @@ const KeyGeneration = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>After P8</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[0, 1, 0, 0, 0, 0, 1, 1].map((value) => (
+                    {[0, 1, 0, 0, 0, 0, 1, 1].map((value, index) => (
                         <Grid key={value} item>
-                        <div className={`${classes.bits}`}>{value}</div>
+                        <div className={`${classes.bits} ${classes[getKeyName(index)]}`}>{value}</div>
                         </Grid>
                     ))}
                 </Grid>
@@ -155,7 +155,7 @@ const KeyGeneration = (props) => {
         {/* MAKE Key --> Permutation10 ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(value)]} ${classes.arrow_path}`}
+                className={`arrow ${classes[getArrowName(1)]} ${classes.arrow_path}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`key_bit_${value}`),
@@ -173,7 +173,7 @@ const KeyGeneration = (props) => {
         {/* MAKE Permutation10 --> LS1 ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(value)]} ${classes.arrow_path}`}
+                className={`arrow ${classes[getArrowName(2)]} ${classes.arrow_path}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`p10o_${value}`),
@@ -192,7 +192,7 @@ const KeyGeneration = (props) => {
         {/* MAKE LS1 --> Permutation8 ARROWS */}
         {[6, 3, 7, 4, 8, 5, 10, 9].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(value)]} ${classes.arrow_path}`}
+                className={`arrow ${classes[getArrowName(3)]} ${classes.arrow_path}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`ls1_${value}`),
@@ -209,7 +209,7 @@ const KeyGeneration = (props) => {
 
         {/* MAKE Permution10 --> LS2 */}
         <Arrow
-            className={`arrow ${classes[getArrowName(1)]} ${classes.arrow_path}`}
+            className={`arrow ${classes[getArrowName(4)]} ${classes.arrow_path}`}
             from={{
                 direction: DIRECTION.LEFT,
                 node: () => document.getElementById(`p10o_${1}`),
@@ -225,7 +225,7 @@ const KeyGeneration = (props) => {
         {/* MAKE LS2 --> Permutation8 ARROWS */}
         {[6, 3, 7, 4, 8, 5, 10, 9].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(value)]} ${classes.arrow_path}`}
+                className={`arrow ${classes[getArrowName(5)]} ${classes.arrow_path}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`ls2_${value}`),

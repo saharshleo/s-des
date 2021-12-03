@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Arrow, { DIRECTION } from 'react-arrows';
 
-import {useStyles} from '../../configEnc';
+import {useStylesEnc} from '../../configEnc';
 
 
-const KeyGeneration = (props) => {
-    const classes = useStyles();
+const Encryption = (props) => {
+    const classes = useStylesEnc();
+
+    // Animate arrows after form submit
+    useEffect(() => {
+        
+        let arrows = document.querySelectorAll(".arrow");
+        if(arrows && arrows.length) {
+            arrows.forEach(arrow => {
+                arrow.style.animation = "none";
+                setTimeout(() => {
+                    arrow.style.animation = "";
+                });
+            })
+        }
+
+    }, [props.data]);
 
     function getArrowName(v) {
         return "arrow_path_enc"+v;
@@ -905,4 +920,4 @@ const KeyGeneration = (props) => {
 }
 
 
-export default KeyGeneration;
+export default Encryption;

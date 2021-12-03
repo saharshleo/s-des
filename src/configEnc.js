@@ -16,7 +16,7 @@ const colors = [
 const arrow_color = "#000000"
 
 
-const useStyles = makeStyles((theme) => ({
+const useStylesEnc = makeStyles((theme) => ({
     centered: {
         display: "flex",
         justifyContent: "center",
@@ -260,4 +260,4 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export { colors, useStyles };
+export { colors, useStylesEnc };

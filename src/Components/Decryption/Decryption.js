@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Arrow, { DIRECTION } from 'react-arrows';
 
-import {useStyles} from '../../configDec';
+import {useStylesDec} from '../../configDec';
 
 
-const KeyGeneration = (props) => {
-    const classes = useStyles();
+const Decryption = (props) => {
+    const classes = useStylesDec();
+
+    useEffect(() => {
+        
+        let arrows = document.querySelectorAll(".arrow");
+        if(arrows && arrows.length) {
+            arrows.forEach(arrow => {
+                arrow.style.animation = "none";
+                setTimeout(() => {
+                    arrow.style.animation = "";
+                });
+            })
+        }
+
+    }, [props.data]);
 
     function getArrowName(v) {
         return "arrow_path_dec"+v;
@@ -905,4 +919,4 @@ const KeyGeneration = (props) => {
 }
 
 
-export default KeyGeneration;
+export default Decryption;

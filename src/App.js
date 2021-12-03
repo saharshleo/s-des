@@ -9,7 +9,12 @@ import { Button } from "@material-ui/core";
 
 import NavBar from './Components/NavBar/NavBar';
 import KeyGeneration from './Components/KeyGeneration/KeyGeneration';
-import {useStyles} from './config';
+import Encryption from './Components/Encryption/Encryption';
+import Decryption from './Components/Decryption/Decryption';
+
+import {useStyles} from './configKey';
+import {useStylesEnc} from './configEnc';
+import {useStylesDec} from './configDec';
 
 function App() {
     const classes = useStyles();
