@@ -13,6 +13,8 @@ const colors = [
     "#6200ead5",
 ];
 
+const arrow_color = "#000000"
+
 
 const useStyles = makeStyles((theme) => ({
     centered: {
@@ -28,39 +30,34 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        marginBottom: "40px",
     },
 
     // KEY BITS -----------------------------------------------------
-    key_bits0: {
+    plain_text_bits0: {
         backgroundColor: colors[0],
     },
-    key_bits1: {
+    plain_text_bits1: {
         backgroundColor: colors[1],
     },
-    key_bits2: {
+    plain_text_bits2: {
         backgroundColor: colors[2],
     },
-    key_bits3: {
+    plain_text_bits3: {
         backgroundColor: colors[3],
     },
-    key_bits4: {
+    plain_text_bits4: {
         backgroundColor: colors[4],
     },
-    key_bits5: {
+    plain_text_bits5: {
         backgroundColor: colors[5],
     },
-    key_bits6: {
+    plain_text_bits6: {
         backgroundColor: colors[6],
     },
-    key_bits7: {
+    plain_text_bits7: {
         backgroundColor: colors[7],
     },
-    key_bits8: {
-        backgroundColor: colors[8],
-    },
-    key_bits9: {
-        backgroundColor: colors[9],
-    },    
 
     // PERMUTATION BITS -----------------------------------------------------
     perm_bits: {
@@ -70,8 +67,8 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "center",
         alignItems: "center",
         margin: "12px",
-        marginTop: "60px",
-        marginBottom: "0px",
+        marginTop: "20px",
+        marginBottom: "20px",
     },
 
     permutation_bits0: {
@@ -118,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
 
 
     // ARROWS ----------------------------------------------------------
-    arrow_path: {
+    arrow_path_enc: {
         // stroke: colors[0],
         fill: "transparent",
         strokeDasharray: "1000",
@@ -128,64 +125,130 @@ const useStyles = makeStyles((theme) => ({
         // animationDelay: "1s",
     },
 
-    arrow_path1: {
-        stroke: colors[0],
-        animation: `$dash 4s 1 forwards`,
-        animationDelay: "1s",
-    },
-
-    arrow_path2: {
-        stroke: colors[1],
-        animation: `$dash 4s 1 forwards`,
-        animationDelay: "2s",
-    },
-
-    arrow_path3: {
-        stroke: colors[2],
-        animation: `$dash 4s 1 forwards`,
-        animationDelay: "3s",
-    },
-
-    arrow_path4: {
-        stroke: colors[3],
-        animation: `$dash 4s 1 forwards`,
-        animationDelay: "4s",
-    },
-
-    arrow_path5: {
-        stroke: colors[4],
-        animation: `$dash 4s 1 forwards`,
-        animationDelay: "5s",
-    },
-
-    arrow_path6: {
-        stroke: colors[5],
-        animation: `$dash 4s 1 forwards`,
-        animationDelay: "6s",
-    },
-
-    arrow_path7: {
-        stroke: colors[6],
+    arrow_path_enc1: {
+        stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
         animationDelay: "7s",
     },
 
-    arrow_path8: {
-        stroke: colors[7],
+    arrow_path_enc2: {
+        stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
         animationDelay: "8s",
     },
 
-    arrow_path9: {
-        stroke: colors[8],
+    arrow_path_enc3: {
+        stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
         animationDelay: "9s",
     },
 
-    arrow_path10: {
-        stroke: colors[9],
+    arrow_path_enc4: {
+        stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
         animationDelay: "10s",
+    },
+
+    arrow_path_enc5: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "11s",
+    },
+
+    arrow_path_enc6: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "12s",
+    },
+
+    arrow_path_enc7: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "13s",
+    },
+
+    arrow_path_enc8: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "14s",
+    },
+
+    arrow_path_enc9: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "15s",
+    },
+
+    arrow_path_enc10: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "16s",
+    },
+
+    arrow_path_enc11: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "17s",
+    },
+
+    arrow_path_enc12: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "18s",
+    },
+
+    arrow_path_enc13: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "19s",
+    },
+
+    arrow_path_enc14: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "20s",
+    },
+
+    arrow_path_enc15: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "21s",
+    },
+
+    arrow_path_enc16: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "22s",
+    },
+
+    arrow_path_enc17: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "23s",
+    },
+
+    arrow_path_enc18: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "24s",
+    },
+
+    arrow_path_enc19: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "25s",
+    },
+
+    arrow_path_enc20: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "26s",
+    },
+
+    arrow_path_enc21: {
+        stroke: arrow_color,
+        animation: `$dash 4s 1 forwards`,
+        animationDelay: "27s",
     },
 
     "@keyframes dash": {
