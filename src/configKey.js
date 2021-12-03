@@ -17,10 +17,6 @@ const arrow_color = "#000000"
 
 
 const useStyles = makeStyles((theme) => ({
-    akshat: {
-
-    },
-    
     button: {
         margin: "1rem",
         padding: "0.5rem",
