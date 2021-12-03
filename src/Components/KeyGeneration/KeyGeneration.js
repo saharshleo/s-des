@@ -1,6 +1,6 @@
 import './KeyGeneration.css'
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Arrow, { DIRECTION } from 'react-arrows';
 
@@ -23,7 +23,7 @@ const KeyGeneration = (props) => {
             })
         }
 
-    }, [props.data]);
+    }, [props.keyBitsArray]);
 
     function getArrowName(v) {
         return "arrow_path"+v;
@@ -45,7 +45,7 @@ const KeyGeneration = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>Key Bits</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {props.data.map((value, index) => (
+                    {props.keyBitsArray.map((value, index) => (
                         <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getKeyName(index)]}`} id={`key_bit_${Number(index)+1}`}>{value}</div>
                         </Grid>
@@ -57,8 +57,8 @@ const KeyGeneration = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>P10 Positions</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {props.perm.map((value, index) => (
-                        <Grid key={value} item>
+                    {props.perm10.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.perm_bits} ${classes[getPermName(value-1)]}`} id={`p10_${value}`}>{value}</div>
                         </Grid>
                     ))}
@@ -69,8 +69,8 @@ const KeyGeneration = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>After P10</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 0, 0, 0, 0, 0, 1, 1, 0, 0].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.p10Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getKeyName(index)]}`} id={`p10o_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -81,8 +81,8 @@ const KeyGeneration = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>Left Shift 1</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[0, 0, 0, 0, 1, 1, 1, 0, 0, 0].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.ls1Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getKeyName(index)]} ${classes.margin_top}`} id={`ls1_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -93,8 +93,8 @@ const KeyGeneration = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>P8 Positions</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[6, 3, 7, 4, 8, 5, 10, 9].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.perm8.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.perm_bits} ${classes[getPermName(value-1)]} ${classes.margin_top}`} id={`p8_${value}`}>{value}</div>
                         </Grid>
                     ))}
@@ -105,8 +105,8 @@ const KeyGeneration = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>After P8</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[1, 0, 1, 0, 0, 1, 0, 0].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.key1.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getKeyName(index)]}`} id={`p8o_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -117,8 +117,8 @@ const KeyGeneration = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>Left Shift 2</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[0, 0, 1, 0, 0, 0, 0, 0, 1, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.ls2Output.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getKeyName(index)]} ${classes.margin_top}`} id={`ls2_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
@@ -129,8 +129,8 @@ const KeyGeneration = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>P8 Positions</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[6, 3, 7, 4, 8, 5, 10, 9].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.perm8.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.perm_bits} ${classes[getPermName(value-1)]} ${classes.margin_top}`} id={`p82_${value}`}>{value}</div>
                         </Grid>
                     ))}
@@ -141,8 +141,8 @@ const KeyGeneration = (props) => {
             <Grid item xs={2} className={`${classes.label} text__header3`}>After P8</Grid>
             <Grid item xs={10}>
                 <Grid container justifyContent="center" spacing={2}>
-                    {[0, 1, 0, 0, 0, 0, 1, 1].map((value, index) => (
-                        <Grid key={value} item>
+                    {props.key2.map((value, index) => (
+                        <Grid key={Number(index)+1} item>
                         <div className={`${classes.bits} ${classes[getKeyName(index)]}`}>{value}</div>
                         </Grid>
                     ))}
@@ -181,7 +181,7 @@ const KeyGeneration = (props) => {
                 }}
                 to={{
                     direction: DIRECTION.TOP,
-                    node: () => document.getElementById(`ls1_${value%5==1 ? value+4 : value-1}`),
+                    node: () => document.getElementById(`ls1_${value%5===1 ? value+4 : value-1}`),
                     translation: [0, -0.8],
                 }}
             />
