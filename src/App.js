@@ -16,7 +16,7 @@ import {useStyles} from './configKey';
 import {useStylesEnc} from './configEnc';
 import {useStylesDec} from './configDec';
 
-import {getKeyGenOutputs, getEncryptOutputs, getDecryptOutputs} from './utils';
+import {getKeyGenOutputs, getEncryptOutputs, getDecryptOutputs, getStringEncryptionOutput, getStringDecryptionOutput} from './utils';
 
 function App() {
     const classesKey = useStyles();
@@ -216,6 +216,92 @@ function App() {
     };
     const onCipherTextChange = (e) => setCipherTextValue(e.target.value);
     
+
+    // String Encryption
+    const [keyStringValue, setKeyStringValue] = useState("");
+    const [keyBitsStringArray, setKeyBitsStringArray] = useState([]);
+    const [plaintextStringValue, setPlaintextStringValue] = useState("");
+    const [plainTextStringArray, setPlainTextStringArray] = useState([]);
+
+    const [ciphertextStringOutput, setCiphertextStringOutput] = useState("");
+    const [ciphertextBinStringOutput, setCiphertextBinStringOutput] = useState([]);
+
+    const handleStringEncryption = () => {
+        // input validation [TODO]
+        if(keyStringValue.length !== 10) {
+            alert("Key length should be 10");
+            return;
+        }
+        let tempKeyArray = keyStringValue.split("").map((value) => (Number(value)));
+
+        for (let i = 0; i < 10; i++) {
+            if (!(tempKeyArray[i] === 0 || tempKeyArray[i] === 1)) {
+                alert("Key bits should be 1 or 0");
+                return;
+            }
+        }
+
+        setKeyBitsStringArray(tempKeyArray);
+
+        // calculate output of p10, ls1, p8 or key1, ls2, p8 or key2
+        let keyGenOutputs = getKeyGenOutputs(tempKeyArray, perm10, perm8);
+        let k1 = keyGenOutputs["key1"];
+        let k2 = keyGenOutputs["key2"];
+
+        let tempArray = plaintextStringValue.split("");
+        setPlainTextStringArray(tempArray);
+
+        // calculate output of p10, ls1, p8 or key1, ls2, p8 or key2
+        let encryptOutputs = getStringEncryptionOutput(tempArray, initialPerm, s0, s1, expansion, perm4, inverseIP, k1, k2);
+        setCiphertextStringOutput(encryptOutputs["cipher_string"]);
+        setCiphertextBinStringOutput(encryptOutputs["cipher_binary"]);
+    };
+
+    const onKeyStringChange = (e) => setKeyStringValue(e.target.value);
+    const onPlaintextStringChange = (e) => setPlaintextStringValue(e.target.value);
+
+    // String Decryption
+    const [keyStringDecValue, setKeyStringDecValue] = useState("");
+    const [keyBitsStringDecArray, setKeyBitsStringDecArray] = useState([]);
+    const [ciphertextStringValue, setCiphertextStringValue] = useState("");
+    const [ciphertextStringArray, setCiphertextStringArray] = useState([]);
+
+    const [plaintextStringOutput, setPlaintextStringOutput] = useState("");
+
+    const handleStringDecryption = () => {
+        // input validation [TODO]
+        if(keyStringDecValue.length !== 10) {
+            alert("Key length should be 10");
+            return;
+        }
+        let tempKeyArray = keyStringDecValue.split("").map((value) => (Number(value)));
+
+        for (let i = 0; i < 10; i++) {
+            if (!(tempKeyArray[i] === 0 || tempKeyArray[i] === 1)) {
+                alert("Key bits should be 1 or 0");
+                return;
+            }
+        }
+
+        setKeyBitsStringDecArray(tempKeyArray);
+
+        // calculate output of p10, ls1, p8 or key1, ls2, p8 or key2
+        let keyGenOutputs = getKeyGenOutputs(tempKeyArray, perm10, perm8);
+        let k1 = keyGenOutputs["key1"];
+        let k2 = keyGenOutputs["key2"];
+
+        let tempArray = ciphertextStringValue.split("").map((value) => (Number(value)));
+        setCiphertextStringArray(tempArray);
+
+        // calculate output of p10, ls1, p8 or key1, ls2, p8 or key2
+        let decryptOutputs = getStringDecryptionOutput(tempArray, initialPerm, s0, s1, expansion, perm4, inverseIP, k1, k2);
+        setPlaintextStringOutput(decryptOutputs["plain_string"]);
+    };
+
+    const onKeyStringDecChange = (e) => setKeyStringDecValue(e.target.value);
+    const onCiphertextStringChange = (e) => setCiphertextStringValue(e.target.value);
+
+
     return (
         <>
         <NavBar />
@@ -295,9 +381,29 @@ function App() {
             <TextField id="outlined-basic" variant="outlined" value={plainText.join("")} inputProps={{readOnly: true, }} />
 
 
+            {/* String S-DES */}
+            <h1>String Encryption: </h1>
+            <TextField id="outlined-basic" label="10-bit Key" variant="outlined" value={keyStringValue} onChange={onKeyStringChange} />
+            <TextField id="outlined-basic" label="Plaintext string to encrypt" variant="outlined" value={plaintextStringValue} onChange={onPlaintextStringChange} />
+            <Button className={classesKey.button} variant="contained" size="Large" color="primary" onClick={handleStringEncryption}>Submit</Button>
+
+            <h1>CipherText: </h1>
+            <TextField id="outlined-basic" variant="outlined" value={ciphertextStringOutput} inputProps={{readOnly: true, }} />
+            <TextField id="outlined-basic" variant="outlined" value={ciphertextBinStringOutput.join("")} inputProps={{readOnly: true, }} />
+
+            <h1>Binary string Decryption: </h1>
+            <TextField id="outlined-basic" label="10-bit Key" variant="outlined" value={keyStringDecValue} onChange={onKeyStringDecChange} />
+            <TextField id="outlined-basic" label="Ciphertext bits-string to decrypt" variant="outlined" value={ciphertextStringValue} onChange={onCiphertextStringChange} />
+            <Button className={classesKey.button} variant="contained" size="Large" color="primary" onClick={handleStringDecryption}>Submit</Button>
+
+            <h1>Plaintext: </h1>
+            <TextField id="outlined-basic" variant="outlined" value={plaintextStringOutput} inputProps={{readOnly: true, }} />
+
+
         </Container>
         </>
     );
+
 }
 
 export default App;

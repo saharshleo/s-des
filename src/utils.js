@@ -97,7 +97,7 @@ const getKeyGenOutputs = (keyBits, perm10, perm8) => {
 const getEncryptOutputs = (msg, initialPerm, s0, s1, expansion, perm4, inverseIP, key1, key2) => {
     let temp = applyPermutation(msg, initialPerm);
     let initialPermOutput = temp;
-    console.log(initialPermOutput);
+    // console.log(initialPermOutput);
     let l4Iter1 = initialPermOutput.slice(0, 4), r4Iter1 = initialPermOutput.slice(4, 8);
 
     temp = fk(expansion, s0, s1, key1, temp, perm4);
@@ -174,7 +174,7 @@ const getEncryptOutputs = (msg, initialPerm, s0, s1, expansion, perm4, inverseIP
 const getDecryptOutputs = (msg, initialPerm, s0, s1, expansion, perm4, inverseIP, key1, key2) => {
     let temp = applyPermutation(msg, initialPerm);
     let initialPermOutput = temp;
-    console.log(initialPermOutput);
+    // console.log(initialPermOutput);
     let l4Iter1 = initialPermOutput.slice(0, 4), r4Iter1 = initialPermOutput.slice(4, 8);
 
     temp = fk(expansion, s0, s1, key2, temp, perm4);
@@ -222,7 +222,7 @@ const getDecryptOutputs = (msg, initialPerm, s0, s1, expansion, perm4, inverseIP
         "fk2Output": fk2Output,
         "plainText": plainText,
     };
-    console.log(ee);
+    // console.log(ee);
 
     return {
         "initialPermOutput": initialPermOutput,
@@ -247,4 +247,85 @@ const getDecryptOutputs = (msg, initialPerm, s0, s1, expansion, perm4, inverseIP
     };
 };
 
-export {getKeyGenOutputs, getEncryptOutputs, getDecryptOutputs}
+
+const stringToBinary = (str) => {
+    let res = '';
+    res = str.map(char => {
+        let op = char.charCodeAt(0).toString(2)
+        op = "00000000".substr(op.length) + op; 
+        return op;
+    }).join('');
+    
+    res = res.split("").map((value) => (Number(value)));
+    return res;
+};
+
+
+const binaryToString = (bin_data) => {
+    let res = "";
+
+    let temp_data = "";
+    for(let i = 0; i < bin_data.length; i++){
+        temp_data = bin_data.slice(i*8, i*8+8).join("");
+        let op = temp_data.split(' ').map(letter=>String.fromCharCode(parseInt(letter, 2))).join('')
+        res += op;
+    }
+    // console.log(res);
+    return res;
+};
+
+
+const getStringEncryptionOutput = (msg, initialPerm, s0, s1, expansion, perm4, inverseIP, key1, key2) => {
+    let cipher = [];
+
+    let bin_msg = stringToBinary(msg);
+    console.log(bin_msg);
+
+    let temp_msg = [];
+    for(let i = 0; i < bin_msg.length / 8; i++) {
+        temp_msg = bin_msg.slice(i*8, i*8+8);
+
+        let temp = applyPermutation(temp_msg, initialPerm);
+        temp = fk(expansion, s0, s1, key1, temp, perm4);
+        temp = temp["fkOutput"];
+        temp = temp.slice(4, 8).concat(temp.slice(0, 4));
+        temp = fk(expansion, s0, s1, key2, temp, perm4);
+        temp = temp["fkOutput"];
+        temp = applyPermutation(temp, inverseIP);
+
+        cipher = cipher.concat(temp);
+    }
+
+    return {
+        "cipher_binary": cipher,
+        "cipher_string": binaryToString(cipher),
+    };
+};
+
+
+const getStringDecryptionOutput = (cipher, initialPerm, s0, s1, expansion, perm4, inverseIP, key1, key2) => {
+    let plain = [];
+
+    let temp_cipher = [];
+    for(let i = 0; i < cipher.length / 8; i++) {
+        temp_cipher = cipher.slice(i*8, i*8+8);
+
+        let temp = applyPermutation(temp_cipher, initialPerm);
+        temp = fk(expansion, s0, s1, key2, temp, perm4);
+        temp = temp["fkOutput"];
+        temp = temp.slice(4, 8).concat(temp.slice(0, 4));
+        temp = fk(expansion, s0, s1, key1, temp, perm4);
+        temp = temp["fkOutput"];
+        temp = applyPermutation(temp, inverseIP);
+
+        plain = plain.concat(temp);
+    }
+
+    // console.log(plain);
+    return {
+        "plain_binary": plain,
+        "plain_string": binaryToString(plain),
+    };
+};
+
+export {getKeyGenOutputs, getEncryptOutputs, getDecryptOutputs, getStringEncryptionOutput, getStringDecryptionOutput}
