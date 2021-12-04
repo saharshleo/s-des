@@ -9,8 +9,7 @@ const Decryption = (props) => {
     const classes = useStylesDec();
 
     useEffect(() => {
-        
-        let arrows = document.querySelectorAll(".arrow");
+        let arrows = document.querySelectorAll(".arrow_dec");
         if(arrows && arrows.length) {
             arrows.forEach(arrow => {
                 arrow.style.animation = "none";
@@ -20,7 +19,7 @@ const Decryption = (props) => {
             })
         }
 
-    }, [props.data]);
+    }, [props.cipherTextArray]);
 
     function getArrowName(v) {
         return "arrow_path_dec"+v;
@@ -420,7 +419,7 @@ const Decryption = (props) => {
         {/* MAKE Plaintext --> IP ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(1)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(1)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`ct_bit_dec_${value}`),
@@ -438,7 +437,7 @@ const Decryption = (props) => {
         {/* MAKE After IP --> Right Half ARROWS */}
         {[5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(2)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(2)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`after_ip_dec_${value}`),
@@ -457,7 +456,7 @@ const Decryption = (props) => {
         {/* MAKE Right Half --> E/P #1 ARROWS */}
         {[5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(3)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(3)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`rh_dec_${value}`),
@@ -475,7 +474,7 @@ const Decryption = (props) => {
         {/* MAKE Right Half --> E/P #2 ARROWS */}
         {[5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(3)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(3)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`rh_dec_${value}`),
@@ -494,7 +493,7 @@ const Decryption = (props) => {
         {/* MAKE After E/P --> XOR ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(4)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(4)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.LEFT,
                     node: () => document.getElementById(`after_ep_dec_${value}`),
@@ -512,7 +511,7 @@ const Decryption = (props) => {
         {/* MAKE Key K1 --> XOR ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(4)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(4)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`k2_dec_${value}`),
@@ -531,7 +530,7 @@ const Decryption = (props) => {
         {/* MAKE XOR --> S-Box ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(5)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(5)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`after_ep_xor_k2_dec_${value}`),
@@ -550,7 +549,7 @@ const Decryption = (props) => {
         {/* MAKE S-Box --> S-Box Output ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(6)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(6)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`s_box_dec_${Math.ceil(value / 2)}`),
@@ -569,7 +568,7 @@ const Decryption = (props) => {
         {/* MAKE S-Box Output --> Permutation ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(7)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(7)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`s_box_output_dec_${value}`),
@@ -588,7 +587,7 @@ const Decryption = (props) => {
         {/* MAKE After Permutation --> XOR with left half ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(8)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(8)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`after_perm_dec_${value}`),
@@ -607,7 +606,7 @@ const Decryption = (props) => {
         {/* MAKE Left Half --> Permutation XOR with left half ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(8)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(8)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`lh_dec_${value}`),
@@ -626,7 +625,7 @@ const Decryption = (props) => {
         {/* MAKE XOR with left half --> Output of Fk ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(9)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(9)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`after_perm_xor_lh_dec_${value}`),
@@ -645,7 +644,7 @@ const Decryption = (props) => {
         {/* MAKE Output of Fk --> Swap #1 ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(10)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(10)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`fk_dec_${value}`),
@@ -663,7 +662,7 @@ const Decryption = (props) => {
         {/* MAKE Output of Fk --> Swap #2 ARROWS */}
         {[5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(10)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(10)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`fk_dec_${value}`),
@@ -685,7 +684,7 @@ const Decryption = (props) => {
         {/* MAKE Swap --> RH ARROWS */}
         {[5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(11)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(11)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`swap_dec_${value}`),
@@ -704,7 +703,7 @@ const Decryption = (props) => {
         {/* MAKE Right Half --> E/P #1 ARROWS */}
         {[5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(12)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(12)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`rh_2_dec_${value}`),
@@ -722,7 +721,7 @@ const Decryption = (props) => {
         {/* MAKE Right Half --> E/P #2 ARROWS */}
         {[5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(12)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(12)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`rh_2_dec_${value}`),
@@ -741,7 +740,7 @@ const Decryption = (props) => {
         {/* MAKE After E/P --> XOR ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(13)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(13)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.LEFT,
                     node: () => document.getElementById(`after_ep_2_dec_${value}`),
@@ -759,7 +758,7 @@ const Decryption = (props) => {
         {/* MAKE Key K1 --> XOR ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(13)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(13)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`k1_dec_${value}`),
@@ -778,7 +777,7 @@ const Decryption = (props) => {
         {/* MAKE XOR --> S-Box ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(14)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(14)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`after_ep_xor_k1_dec_${value}`),
@@ -797,7 +796,7 @@ const Decryption = (props) => {
         {/* MAKE S-Box --> S-Box Output ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(15)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(15)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`s_box_2_dec_${Math.ceil(value / 2)}`),
@@ -816,7 +815,7 @@ const Decryption = (props) => {
         {/* MAKE S-Box Output --> Permutation ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(16)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(16)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`s_box_output_2_dec_${value}`),
@@ -835,7 +834,7 @@ const Decryption = (props) => {
         {/* MAKE After Permutation --> XOR with left half ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(17)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(17)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`after_perm_2_dec_${value}`),
@@ -854,7 +853,7 @@ const Decryption = (props) => {
         {/* MAKE Left Half --> Permutation XOR with left half ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(17)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(17)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`lh_2_dec_${value}`),
@@ -873,7 +872,7 @@ const Decryption = (props) => {
         {/* MAKE XOR with left half --> Output of Fk ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(18)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(18)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`after_perm_xor_lh_2_dec_${value}`),
@@ -892,7 +891,7 @@ const Decryption = (props) => {
         {/* MAKE Output of Fk --> IP inverse ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(19)]} ${classes.arrow_path_dec}`}
+                className={`arrow_dec ${classes[getArrowName(19)]} ${classes.arrow_path_dec}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`fk_2_dec_${value}`),

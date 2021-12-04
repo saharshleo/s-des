@@ -11,7 +11,7 @@ const Encryption = (props) => {
     // Animate arrows after form submit
     useEffect(() => {
         
-        let arrows = document.querySelectorAll(".arrow");
+        let arrows = document.querySelectorAll(".arrow_enc");
         if(arrows && arrows.length) {
             arrows.forEach(arrow => {
                 arrow.style.animation = "none";
@@ -421,7 +421,7 @@ const Encryption = (props) => {
         {/* MAKE Plaintext --> IP ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(1)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(1)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`pt_bit_enc_${value}`),
@@ -439,7 +439,7 @@ const Encryption = (props) => {
         {/* MAKE After IP --> Right Half ARROWS */}
         {[5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(2)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(2)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`after_ip_enc_${value}`),
@@ -458,7 +458,7 @@ const Encryption = (props) => {
         {/* MAKE Right Half --> E/P #1 ARROWS */}
         {[5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(3)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(3)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`rh_enc_${value}`),
@@ -476,7 +476,7 @@ const Encryption = (props) => {
         {/* MAKE Right Half --> E/P #2 ARROWS */}
         {[5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(3)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(3)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`rh_enc_${value}`),
@@ -495,7 +495,7 @@ const Encryption = (props) => {
         {/* MAKE After E/P --> XOR ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(4)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(4)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.LEFT,
                     node: () => document.getElementById(`after_ep_enc_${value}`),
@@ -513,7 +513,7 @@ const Encryption = (props) => {
         {/* MAKE Key K1 --> XOR ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(4)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(4)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`k1_enc_${value}`),
@@ -532,7 +532,7 @@ const Encryption = (props) => {
         {/* MAKE XOR --> S-Box ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(5)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(5)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`after_ep_xor_k1_enc_${value}`),
@@ -551,7 +551,7 @@ const Encryption = (props) => {
         {/* MAKE S-Box --> S-Box Output ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(6)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(6)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`s_box_enc_${Math.ceil(value / 2)}`),
@@ -570,7 +570,7 @@ const Encryption = (props) => {
         {/* MAKE S-Box Output --> Permutation ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(7)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(7)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`s_box_output_enc_${value}`),
@@ -589,7 +589,7 @@ const Encryption = (props) => {
         {/* MAKE After Permutation --> XOR with left half ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(8)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(8)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`after_perm_enc_${value}`),
@@ -608,7 +608,7 @@ const Encryption = (props) => {
         {/* MAKE Left Half --> Permutation XOR with left half ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(8)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(8)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`lh_enc_${value}`),
@@ -627,7 +627,7 @@ const Encryption = (props) => {
         {/* MAKE XOR with left half --> Output of Fk ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(9)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(9)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`after_perm_xor_lh_enc_${value}`),
@@ -646,7 +646,7 @@ const Encryption = (props) => {
         {/* MAKE Output of Fk --> Swap #1 ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(10)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(10)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`fk_enc_${value}`),
@@ -664,7 +664,7 @@ const Encryption = (props) => {
         {/* MAKE Output of Fk --> Swap #2 ARROWS */}
         {[5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(10)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(10)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`fk_enc_${value}`),
@@ -686,7 +686,7 @@ const Encryption = (props) => {
         {/* MAKE Swap --> RH ARROWS */}
         {[5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(11)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(11)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`swap_enc_${value}`),
@@ -705,7 +705,7 @@ const Encryption = (props) => {
         {/* MAKE Right Half --> E/P #1 ARROWS */}
         {[5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(12)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(12)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`rh_2_enc_${value}`),
@@ -723,7 +723,7 @@ const Encryption = (props) => {
         {/* MAKE Right Half --> E/P #2 ARROWS */}
         {[5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(12)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(12)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`rh_2_enc_${value}`),
@@ -742,7 +742,7 @@ const Encryption = (props) => {
         {/* MAKE After E/P --> XOR ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(13)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(13)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.LEFT,
                     node: () => document.getElementById(`after_ep_2_enc_${value}`),
@@ -760,7 +760,7 @@ const Encryption = (props) => {
         {/* MAKE Key K1 --> XOR ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(13)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(13)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`k2_enc_${value}`),
@@ -779,7 +779,7 @@ const Encryption = (props) => {
         {/* MAKE XOR --> S-Box ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(14)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(14)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`after_ep_xor_k2_enc_${value}`),
@@ -798,7 +798,7 @@ const Encryption = (props) => {
         {/* MAKE S-Box --> S-Box Output ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(15)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(15)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`s_box_2_enc_${Math.ceil(value / 2)}`),
@@ -817,7 +817,7 @@ const Encryption = (props) => {
         {/* MAKE S-Box Output --> Permutation ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(16)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(16)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`s_box_output_2_enc_${value}`),
@@ -836,7 +836,7 @@ const Encryption = (props) => {
         {/* MAKE After Permutation --> XOR with left half ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(17)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(17)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`after_perm_2_enc_${value}`),
@@ -855,7 +855,7 @@ const Encryption = (props) => {
         {/* MAKE Left Half --> Permutation XOR with left half ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(17)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(17)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`lh_2_enc_${value}`),
@@ -874,7 +874,7 @@ const Encryption = (props) => {
         {/* MAKE XOR with left half --> Output of Fk ARROWS */}
         {[1, 2, 3, 4].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(18)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(18)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`after_perm_xor_lh_2_enc_${value}`),
@@ -893,7 +893,7 @@ const Encryption = (props) => {
         {/* MAKE Output of Fk --> IP inverse ARROWS */}
         {[1, 2, 3, 4, 5, 6, 7, 8].map((value) => (
             <Arrow
-                className={`arrow ${classes[getArrowName(19)]} ${classes.arrow_path_enc}`}
+                className={`arrow_enc ${classes[getArrowName(19)]} ${classes.arrow_path_enc}`}
                 from={{
                     direction: DIRECTION.BOTTOM,
                     node: () => document.getElementById(`fk_2_enc_${value}`),

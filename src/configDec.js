@@ -128,127 +128,127 @@ const useStylesDec = makeStyles((theme) => ({
     arrow_path_dec1: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "29s",
+        animationDelay: "1s",
     },
 
     arrow_path_dec2: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "30s",
+        animationDelay: "2s",
     },
 
     arrow_path_dec3: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "31s",
+        animationDelay: "3s",
     },
 
     arrow_path_dec4: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "32s",
+        animationDelay: "4s",
     },
 
     arrow_path_dec5: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "33s",
+        animationDelay: "5s",
     },
 
     arrow_path_dec6: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "34s",
+        animationDelay: "6s",
     },
 
     arrow_path_dec7: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "35s",
+        animationDelay: "7s",
     },
 
     arrow_path_dec8: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "36s",
+        animationDelay: "8s",
     },
 
     arrow_path_dec9: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "37s",
+        animationDelay: "9s",
     },
 
     arrow_path_dec10: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "38s",
+        animationDelay: "10s",
     },
 
     arrow_path_dec11: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "39s",
+        animationDelay: "11s",
     },
 
     arrow_path_dec12: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "40s",
+        animationDelay: "12s",
     },
 
     arrow_path_dec13: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "41s",
+        animationDelay: "13s",
     },
 
     arrow_path_dec14: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "42s",
+        animationDelay: "14s",
     },
 
     arrow_path_dec15: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "43s",
+        animationDelay: "15s",
     },
 
     arrow_path_dec16: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "44s",
+        animationDelay: "16s",
     },
 
     arrow_path_dec17: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "45s",
+        animationDelay: "17s",
     },
 
     arrow_path_dec18: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "46s",
+        animationDelay: "18s",
     },
 
     arrow_path_dec19: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "47s",
+        animationDelay: "19s",
     },
 
     arrow_path_dec20: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "48s",
+        animationDelay: "20s",
     },
 
     arrow_path_dec21: {
         stroke: arrow_color,
         animation: `$dash 4s 1 forwards`,
-        animationDelay: "49s",
+        animationDelay: "21s",
     },
 
     "@keyframes dash": {
