@@ -71,7 +71,7 @@ const KeyGeneration = (props) => {
                 <Grid container justifyContent="center" spacing={2}>
                     {props.p10Output.map((value, index) => (
                         <Grid key={Number(index)+1} item>
-                        <div className={`${classes.bits} ${classes[getKeyName(index)]}`} id={`p10o_${index+1}`}>{value}</div>
+                        <div className={`${classes.bits} ${classes[getKeyName(props.perm10[index]-1)]}`} id={`p10o_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
                 </Grid>
@@ -107,7 +107,7 @@ const KeyGeneration = (props) => {
                 <Grid container justifyContent="center" spacing={2}>
                     {props.key1.map((value, index) => (
                         <Grid key={Number(index)+1} item>
-                        <div className={`${classes.bits} ${classes[getKeyName(index)]}`} id={`p8o_${index+1}`}>{value}</div>
+                        <div className={`${classes.bits} ${classes[getKeyName(props.perm8[index]-1)]}`} id={`p8o_${index+1}`}>{value}</div>
                         </Grid>
                     ))}
                 </Grid>
@@ -143,7 +143,7 @@ const KeyGeneration = (props) => {
                 <Grid container justifyContent="center" spacing={2}>
                     {props.key2.map((value, index) => (
                         <Grid key={Number(index)+1} item>
-                        <div className={`${classes.bits} ${classes[getKeyName(index)]}`}>{value}</div>
+                        <div className={`${classes.bits} ${classes[getKeyName(props.perm8[index]-1)]}`}>{value}</div>
                         </Grid>
                     ))}
                 </Grid>

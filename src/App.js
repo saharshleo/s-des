@@ -310,25 +310,39 @@ function App() {
 
             {/* ####### KEY GENERATION ############################################## */}
             <h1 className="text__header">Key Generation</h1>
-            <Grid item xs={12} className={classesKey.centered}>
-                <TextField id="outlined-basic" label="10-bit Key" variant="outlined" value={keyValue} onChange={onKeyChange} />
-                <Button className={classesKey.button} variant="contained" size="Large" color="primary" onClick={handleKeyGenSubmit}>Submit</Button>
+            <Grid container spacing={2}>
+                <Grid item xs={2}></Grid>
+                <Grid item xs={10} className={classesKey.centered}>
+                    <TextField id="outlined-basic" label="10-bit Key" variant="outlined" value={keyValue} onChange={onKeyChange} />
+                    <Button className={classesKey.button} variant="contained" size="Large" color="primary" onClick={handleKeyGenSubmit}>Submit</Button>
+                </Grid>
             </Grid>
             <KeyGeneration 
                 keyBitsArray={keyBitsArray} perm10={perm10} perm8={perm8}
                 p10Output={p10Output} ls1Output={ls1Output} key1={key1}
                 ls2Output={ls2Output} key2={key2} />
+            <br/>
+            <br/>
+            <Grid container spacing={2}>
+                <Grid item xs={2}></Grid>
+                <Grid item xs={10} className={classesKey.centered}>
+                    <h1 style={{margin : '20px'}}>Key 1: </h1>
+                    <TextField id="outlined-basic" variant="outlined" value={key1.join("")} inputProps={{readOnly: true, }} />
+                    <h1 style={{margin : '20px'}}>Key 2: </h1>
+                    <TextField id="outlined-basic" variant="outlined" value={key2.join("")} inputProps={{readOnly: true, }} />
+                </Grid>
+            </Grid>
 
-            <h1>Key1: </h1>
-            <TextField id="outlined-basic" variant="outlined" value={key1.join("")} inputProps={{readOnly: true, }} />
-            <h1>Key2: </h1>
-            <TextField id="outlined-basic" variant="outlined" value={key2.join("")} inputProps={{readOnly: true, }} />
-
+            <br/>
+            <br/>   
             {/* ####### ENCRYPTION ############################################## */}
             <h1 className="text__header">Encryption</h1>
-            <Grid item xs={12} className={classesEnc.centered}>
-                <TextField id="outlined-basic" label="8-bit Plaintext" variant="outlined" value={plainTextValue} onChange={onPlainTextChange} />
-                <Button className={classesEnc.button} variant="contained" size="Large" color="primary" onClick={handleEncryptSubmit}>Submit</Button>
+            <Grid container spacing={2}>
+                <Grid item xs={2}></Grid>
+                <Grid item xs={10} className={classesKey.centered}>
+                    <TextField id="outlined-basic" label="8-bit Plaintext" variant="outlined" value={plainTextValue} onChange={onPlainTextChange} />
+                    <Button className={classesEnc.button} variant="contained" size="Large" color="primary" onClick={handleEncryptSubmit}>Submit</Button>
+                </Grid>
             </Grid>
             <Encryption 
                 plainTextArray={plainTextArray} key1={key1} key2={key2}
@@ -348,15 +362,25 @@ function App() {
                 fk2Output={fk2Output}
 
                 cipherText={cipherText} />
-            
-            <h1>Ciphertext: </h1>
-            <TextField id="outlined-basic" variant="outlined" value={cipherText.join("")} inputProps={{readOnly: true, }} />
-
+            <br/>
+            <br/>
+            <Grid container spacing={2}>
+                <Grid item xs={2}></Grid>
+                <Grid item xs={10} className={classesKey.centered}>
+                    <h1 style={{margin : '20px'}}>Ciphertext: </h1>
+                    <TextField id="outlined-basic" variant="outlined" value={cipherText.join("")} inputProps={{readOnly: true, }} />
+                </Grid>
+            </Grid>
+            <br/>
+            <br/>
             {/* ####### DECRYPTION ############################################## */}
             <h1 className="text__header">Decryption</h1>
-            <Grid item xs={12} className={classesDec.centered}>
-                <TextField id="outlined-basic" label="8-bit Ciphertext" variant="outlined" value={cipherTextValue} onChange={onCipherTextChange} />
-                <Button className={classesDec.button} variant="contained" size="Large" color="primary" onClick={handleDecryptSubmit}>Submit</Button>
+            <Grid container spacing={2}>
+                <Grid item xs={2}></Grid>
+                <Grid item xs={10} className={classesKey.centered}>
+                    <TextField id="outlined-basic" label="8-bit Ciphertext" variant="outlined" value={cipherTextValue} onChange={onCipherTextChange} />
+                    <Button className={classesDec.button} variant="contained" size="Large" color="primary" onClick={handleDecryptSubmit}>Submit</Button>
+                </Grid>
             </Grid>
             <Decryption 
                 cipherTextArray={cipherTextArray} key1={key1} key2={key2}
@@ -376,24 +400,31 @@ function App() {
                 decfk2Output={decfk2Output}
 
                 plainText={plainText} />
-
-            <h1>Plaintext: </h1>
-            <TextField id="outlined-basic" variant="outlined" value={plainText.join("")} inputProps={{readOnly: true, }} />
-
-
+            <br/>
+            <br/>
+            <Grid container spacing={2}>
+                <Grid item xs={2}></Grid>
+                <Grid item xs={10} className={classesKey.centered}>
+                    <h1 style={{margin : '20px'}}>Plaintext: </h1>
+                    <TextField id="outlined-basic" variant="outlined" value={plainText.join("")} inputProps={{readOnly: true, }} />
+                </Grid>
+            </Grid>
+        
+            <br/>
+            <br/>
             {/* String S-DES */}
             <h1>String Encryption: </h1>
-            <TextField id="outlined-basic" label="10-bit Key" variant="outlined" value={keyStringValue} onChange={onKeyStringChange} />
-            <TextField id="outlined-basic" label="Plaintext string to encrypt" variant="outlined" value={plaintextStringValue} onChange={onPlaintextStringChange} />
+            <TextField style={{marginRight : '20px'}} id="outlined-basic" label="10-bit Key" variant="outlined" value={keyStringValue} onChange={onKeyStringChange} />
+            <TextField id="outlined-basic" label="Plaintext string" variant="outlined" value={plaintextStringValue} onChange={onPlaintextStringChange} />
             <Button className={classesKey.button} variant="contained" size="Large" color="primary" onClick={handleStringEncryption}>Submit</Button>
 
             <h1>CipherText: </h1>
-            <TextField id="outlined-basic" variant="outlined" value={ciphertextStringOutput} inputProps={{readOnly: true, }} />
+            <TextField style={{marginRight : '20px'}} id="outlined-basic" variant="outlined" value={ciphertextStringOutput} inputProps={{readOnly: true, }} />
             <TextField id="outlined-basic" variant="outlined" value={ciphertextBinStringOutput.join("")} inputProps={{readOnly: true, }} />
 
             <h1>Binary string Decryption: </h1>
-            <TextField id="outlined-basic" label="10-bit Key" variant="outlined" value={keyStringDecValue} onChange={onKeyStringDecChange} />
-            <TextField id="outlined-basic" label="Ciphertext bits-string to decrypt" variant="outlined" value={ciphertextStringValue} onChange={onCiphertextStringChange} />
+            <TextField style={{marginRight : '20px'}} id="outlined-basic" label="10-bit Key" variant="outlined" value={keyStringDecValue} onChange={onKeyStringDecChange} />
+            <TextField id="outlined-basic" label="Ciphertext bit-string" variant="outlined" value={ciphertextStringValue} onChange={onCiphertextStringChange} />
             <Button className={classesKey.button} variant="contained" size="Large" color="primary" onClick={handleStringDecryption}>Submit</Button>
 
             <h1>Plaintext: </h1>

@@ -8,7 +8,7 @@ const colors = [
     "#c6ff00d5",
     "#ef6c00d5",
     "#4527a0d5",
-    "#455a64d5",
+    "#87CEEB",
     "#2e7d32d5",
     "#6200ead5",
 ];
@@ -18,7 +18,8 @@ const arrow_color = "#000000"
 
 const useStyles = makeStyles((theme) => ({
     button: {
-        margin: "1rem",
+        margin: "5px",
+        marginLeft: "20px",
         padding: "0.5rem",
     },
 
@@ -35,6 +36,8 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        marginTop: "30px",
+        marginBottom: "30px",
     },
 
     // KEY BITS -----------------------------------------------------
@@ -71,14 +74,14 @@ const useStyles = makeStyles((theme) => ({
 
     // PERMUTATION BITS -----------------------------------------------------
     perm_bits: {
-        height: '25px',
-        width: '25px',
+        height: '35px',
+        width: '35px',
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         margin: "12px",
-        marginTop: "60px",
-        marginBottom: "0px",
+        marginTop: "30px",
+        marginBottom: "30px",
     },
 
     permutation_bits0: {
@@ -119,8 +122,10 @@ const useStyles = makeStyles((theme) => ({
 
     label: {
         display: "flex",
-        flexGrow: '1',
-        justifyContent: "flex-end",        
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: "30px",
+        marginBottom: "30px"      
     },
 
 

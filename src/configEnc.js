@@ -8,15 +8,22 @@ const colors = [
     "#c6ff00d5",
     "#ef6c00d5",
     "#4527a0d5",
-    "#455a64d5",
+    "#87CEEB",
     "#2e7d32d5",
     "#6200ead5",
 ];
+
 
 const arrow_color = "#000000"
 
 
 const useStylesEnc = makeStyles((theme) => ({
+    button: {
+        margin: "5px",
+        marginLeft: "20px",
+        padding: "0.5rem",
+    },
+    
     centered: {
         display: "flex",
         justifyContent: "center",
@@ -30,7 +37,8 @@ const useStylesEnc = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: "40px",
+        marginTop: "30px",
+        marginBottom: "30px",
     },
 
     // KEY BITS -----------------------------------------------------
@@ -61,14 +69,14 @@ const useStylesEnc = makeStyles((theme) => ({
 
     // PERMUTATION BITS -----------------------------------------------------
     perm_bits: {
-        height: '25px',
-        width: '25px',
+        height: '35px',
+        width: '35px',
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         margin: "12px",
-        marginTop: "20px",
-        marginBottom: "20px",
+        marginTop: "30px",
+        marginBottom: "30px",
     },
 
     permutation_bits0: {
@@ -110,9 +118,23 @@ const useStylesEnc = makeStyles((theme) => ({
     label: {
         display: "flex",
         flexGrow: '1',
-        justifyContent: "flex-end",        
+        justifyContent: "center",  
+        marginTop: "30px",
+        marginBottom: "30px",      
     },
 
+    // S-BOX -----------------------------------------------------------
+
+    s_box: {
+        backgroundColor: "#00CD66",
+        height: '50px',
+        width: '50px',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: "30px",
+        marginBottom: "30px",
+    },
 
     // ARROWS ----------------------------------------------------------
     arrow_path_enc: {
