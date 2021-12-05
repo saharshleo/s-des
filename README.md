@@ -13,10 +13,10 @@ Install all packages <br>
 
 Run the app <br>
 **`npm start`**
+<br>
 
-| | |
+| **Key Generation** | ![Key Generation](assets/key_gen.png) |
 :-------------------------:|:-------------------------:
-**Key Generation**  |   ![Key Generation](assets/key_gen.png)
 
 | | Encryption          |  Decryption |
 :-------------------------:|:-------------------------:|:-------------------------:
