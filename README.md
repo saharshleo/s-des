@@ -13,3 +13,13 @@ Install all packages <br>
 
 Run the app <br>
 **`npm start`**
+
+| | |
+:-------------------------:|:-------------------------:
+**Key Generation**  |   ![Key Generation](assets/key_gen.png)
+
+| | Encryption          |  Decryption |
+:-------------------------:|:-------------------------:|:-------------------------:
+Iteration #1    |  ![Encryption (Iteration #1)](assets/enc_1.png)  |  ![Decryption (Iteration #1)](assets/dec_1.png)
+Iteration #2    |  ![Encryption (Iteration #2)](assets/enc_2.png)  |  ![Decryption (Iteration #2)](assets/dec_2.png)
+
