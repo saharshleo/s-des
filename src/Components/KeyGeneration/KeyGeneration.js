@@ -212,7 +212,7 @@ const KeyGeneration = (props) => {
             className={`arrow ${classes[getArrowName(4)]} ${classes.arrow_path}`}
             from={{
                 direction: DIRECTION.LEFT,
-                node: () => document.getElementById(`p10o_${1}`),
+                node: () => document.getElementById(`ls1_1`),
                 translation: [-5, 0],
             }}
             to={{
