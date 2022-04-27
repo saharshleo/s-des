@@ -1,4 +1,7 @@
 # S-DES (Simplified Data Encryption Standard)
+<div align="center">
+  <h3>https://s-des.herokuapp.com/</h3>
+</div>
 
 This repository showcases the inner working of the S-DES algorithm using interesting animations and visualizations. 
 
